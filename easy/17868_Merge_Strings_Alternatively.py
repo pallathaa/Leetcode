@@ -35,6 +35,14 @@ Constraints:
 1 <= word1.length, word2.length <= 100
 word1 and word2 consist of lowercase English letters.'''
 
+'''
+Notes for solution 1:
+
+- Solution 1 is more inefficient because '+=' string operator creates a new string every time because strings are immutable.
+    - It's inefficient in a loop 
+- Time complexity: O(n^2) due to repeated string copies 
+'''
+
 # Solution 1
 class Solution(object):
     def mergeAlternately(self, word1, word2):
@@ -57,6 +65,15 @@ class Solution(object):
         else:
             result += word2[num:]
         return result
+    
+'''
+Notes for solution 2:
+
+- Solution 2 builds a list of characters and stores them in the end which is more efficient (amortized linear instead of quadratic)
+because lists are mutable and efficient to append
+- Time complexity: O(n)
+- Space complexity: O(1)
+'''
         
 # Solution 2
 class Solution(object):
@@ -76,13 +93,3 @@ class Solution(object):
             i += 1
         return ''.join(result)
     
-'''
-Notes:
-
-Solution 1 is more inefficient because '+=' string operator creates a new string every time because strings are immutable.
-It's inefficient in a loop 
-Solution 1 ends up being O(n^2) due to repeated string copies 
-Solution 2 builds a list of characters and stores them in the end which is more efficient (amortized linear instead of quadratic)
-because lists are mutable and efficient to append
-Solution 2 is O(n)
-'''

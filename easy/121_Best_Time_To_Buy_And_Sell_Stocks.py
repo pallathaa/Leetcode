@@ -26,10 +26,16 @@ Constraints:
 0 <= prices[i] <= 104
 '''
 
-# Note: Brute force solution would be O(n^2) time complexity and O(1) space complexity
+'''
+Note: 
+- Brute force solution would be O(n^2) time complexity and O(1) space complexity
+    - checks all pairs of buy and sell points
+- This solution keeps track of min_start_price seen so far, and max_profit see so far 
+    - Time complexity: O(n)
+    - Space complexity: O(1)
+'''
 
-
-# Solution: O(n) time complexity, O(1) space complexity 
+# Solution:  
 class Solution(object):
     def maxProfit(self, prices):
         """
