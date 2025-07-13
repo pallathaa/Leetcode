@@ -42,3 +42,59 @@ Constraints:
 At most 2 * 105 calls will be made to get and put.
 '''
 
+class Node:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+        self.prev, self.next = None, None
+    
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = {} # map key to node 
+
+        self.left = Node(0,0) # least recently used 
+        self.right = Node(0,0) # most recently used 
+        self.left.next, self.right.prev = self.right, self.left
+
+    def insert_right(self, node):
+        old_mru = self.right.prev
+        self.right.prev = node 
+        node.next = self.right
+        node.prev = old_mru
+        old_mru.next = node
+    
+    def remove(self, node):
+        prev, nex = node.prev, node.next
+        prev.next, nex.prev = nex, prev
+
+
+    def get(self, key: int) -> int:
+        if key in self.cache.keys():
+            self.remove(self.cache[key])
+            self.insert_right(self.cache[key])
+            return self.cache[key].val
+        else: 
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache.keys():
+            self.remove(self.cache[key])
+        new_node = Node(key, value)
+        self.cache[key] = new_node
+        self.insert_right(new_node)
+
+        if len(self.cache.keys()) > self.capacity: 
+            lru = self.left.next 
+            self.remove(lru)
+            del self.cache[lru.key]
+
+            
+
+
+        
+
+    
+
