@@ -42,6 +42,16 @@ Constraints:
 At most 2 * 105 calls will be made to get and put.
 '''
 
+
+'''
+Notes:
+- We want to keep track of capacity
+- we want a hashmap where the keys are the int keys provided as input and values are pointers to nodes containing key value pairs 
+- we keep a doubly linked list with two pointers(left, right)
+- left points toward least recently used 
+- right points towards most recently used 
+'''
+
 class Node:
     def __init__(self, key, val):
         self.key = key
