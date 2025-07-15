@@ -22,6 +22,12 @@ The number of nodes in the tree is in the range [1, 104].
 -231 <= Node.val <= 231 - 1
 '''
 
+'''
+Notes: 
+- Time complexity: O(n)
+- Space complexity: O(n)
+'''
+
 from collections import deque
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
